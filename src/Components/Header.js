@@ -13,7 +13,6 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   title: {
-    paddingTop: 10,
     textAlign: 'center',
     fontSize: '24px',
   },
