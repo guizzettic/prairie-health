@@ -1,31 +1,18 @@
 import { ResponsiveLine } from '@nivo/line';
-import data from '../data.json';
 
-const Chart = () => (
+const Chart = ({ chartData }) => (
   <ResponsiveLine
-    data={data}
+    data={chartData}
     margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
     xScale={{ type: 'point' }}
     yScale={{
       type: 'linear',
       min: '0',
       max: '27',
-      // stacked: true,
-      // reverse: false,
     }}
     // yFormat=" >-2.f"
     axisTop={null}
-    axisRight={{
-      orient: 'right',
-      tickSize: 5,
-      tickPadding: 5,
-      tickRotation: 0,
-      legend: 'GAD-7',
-      legendOffset: 50,
-      legendPosition: 'middle',
-      min: 0,
-      max: 21,
-    }}
+    axisRight={null}
     axisBottom={{
       orient: 'bottom',
       tickSize: 5,
@@ -39,7 +26,7 @@ const Chart = () => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'PHQ-9',
+      legend: 'PHQ-9 Score',
       legendOffset: -40,
       legendPosition: 'middle',
       min: 0,
@@ -79,5 +66,4 @@ const Chart = () => (
     // ]}
   />
 );
-
 export default Chart;
