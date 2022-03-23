@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingTop: 20,
-    paddingLeft: 80,
+    marginLeft: 80,
   },
   form: { width: 110 },
   chart: {

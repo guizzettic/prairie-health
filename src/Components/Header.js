@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   header: {
     height: 100,
-    backgroundColor: 'green',
+    backgroundColor: 'rgb(80, 114, 104)',
     color: 'white',
     fontWeight: 700,
     letterSpacing: 2,

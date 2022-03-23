@@ -25,7 +25,7 @@ const Chart = ({ chartData }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'PHQ-9 Score',
+      legend: 'Scores',
       legendOffset: -40,
       legendPosition: 'middle',
       min: 0,
