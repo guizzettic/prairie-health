@@ -1,14 +1,29 @@
 import './App.css';
 import cusData from './data.json';
 import { makeStyles } from '@material-ui/core/styles';
-import Chart from './Components/Chart';
 import Header from './Components/Header';
 import { useState, useEffect } from 'react';
+import { Select, FormControl, InputLabel, MenuItem } from '@material-ui/core';
+import Chart from './Components/Chart';
 
 const useStyles = makeStyles({
   container: {
     height: '100vh',
     width: '100vw',
+  },
+  userSection: {
+    display: 'flex',
+    width: '50%',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingLeft: 80,
+  },
+  form: { width: 110 },
+  chart: {
+    width: '93%',
+    height: '70%',
+    margin: 'auto auto',
   },
 });
 
@@ -16,7 +31,7 @@ function App() {
   const classes = useStyles();
   const [users, setUsers] = useState(null);
   const [userListInfo, setUserListInfo] = useState({});
-  const [chosenUser, setChosenUser] = useState(0);
+  const [chosenUser, setChosenUser] = useState(users ? users[0] : null);
 
   function groupUserData(data) {
     let userList = {};
@@ -55,24 +70,42 @@ function App() {
   }, []);
 
   const formatData = (obj) => {
-    let userArr = [];
-
-    userArr.push(obj['GAD-7 Score']);
-    userArr.push(obj['PHQ-9 Score']);
-
-    return userArr;
+    return [obj['GAD-7 Score'], obj['PHQ-9 Score']];
   };
 
-  if (users) formatData(userListInfo[users[chosenUser]]);
+  const handleChange = (e) => {
+    setChosenUser(e.target.value);
+  };
 
   return (
     <div className={classes.container}>
       <Header />
-      {users && <h2>Current User: {users[chosenUser]}</h2>}
 
-      <div style={{ width: 900, height: 600 }}>
-        <Chart newData={formatData(userListInfo[users[2]])} />
-      </div>
+      {users && (
+        <div className={classes.userSection}>
+          <h3>Current User: {chosenUser}</h3>
+          <FormControl className={classes.form}>
+            <InputLabel>Change User</InputLabel>
+            <Select
+              value={chosenUser}
+              label="Change User"
+              onChange={handleChange}
+            >
+              {users.map((user) => (
+                <MenuItem value={user} key={user}>
+                  {user}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+      )}
+
+      {chosenUser && (
+        <div className={classes.chart}>
+          <Chart chartData={formatData(userListInfo[chosenUser])} />
+        </div>
+      )}
     </div>
   );
 }
